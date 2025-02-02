@@ -1,0 +1,14 @@
+
+### Shell environment set up for builds. ###
+
+To build the qemux86-64 demo system, run
+
+  bitbake core-image-minimal
+
+You can boot the generated image with
+
+  runqemu core-image-minimal wic nographic ovmf slirp
+
+To build a test bundle, run
+
+  bitbake qemu-demo-bundle
