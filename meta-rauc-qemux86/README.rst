@@ -31,14 +31,35 @@ Features
 I. Adding the meta-rauc-qemux86 layer to your build
 ===================================================
 
-Run 'bitbake-layers add-layer meta-rauc-qemux86'
+Run ``bitbake-layers add-layer meta-rauc-qemux86``
 
 II. Build The qemu Demo System
 ==============================
 
+Using OE layer tooling
+----------------------
+
+To use OE layer tooling, you need to clone poky first.
+To be compatible with the provided templates, use a ``layers`` subdirectory::
+
+  $ cd meta-rauc-community
+  $ mkdir -p layers
+  $ git clone -b master git://git.yoctoproject.org/poky layers/poky
+
 ::
 
-  $ source oe-init-build-env
+  $ TEMPLATECONF=$(readlink -f meta-rauc-community/meta-rauc-qemux86-64) source oe-init-build-env
+
+Using kas
+---------
+
+::
+
+  $ git clone https://github.com/rauc/meta-rauc-community.git
+  $ kas checkout meta-rauc-community/meta-rauc-qemux86/kas-qemu-grub.yml
+  $ kas shell meta-rauc-community/meta-rauc-qemux86/kas-qemu-grub.yml
+  % ../create-example-keys.sh
+  % bitbake core-bundle-minimal
 
 Add configuration required for qemux86 to your local.conf::
 
